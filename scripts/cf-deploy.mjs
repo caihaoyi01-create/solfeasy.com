@@ -27,6 +27,7 @@ const pnpm = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
 const build = spawnSync(pnpm, ['run', 'cf:build'], {
   stdio: 'inherit',
   env: process.env,
+  shell: process.platform === 'win32',
 });
 if (build.error) throw build.error;
 if ((build.status ?? 1) !== 0) process.exit(build.status ?? 1);
@@ -34,6 +35,7 @@ if ((build.status ?? 1) !== 0) process.exit(build.status ?? 1);
 const deploy = spawnSync(pnpm, ['exec', 'wrangler', 'deploy'], {
   stdio: 'inherit',
   env: process.env,
+  shell: process.platform === 'win32',
 });
 if (deploy.error) throw deploy.error;
 process.exit(deploy.status ?? 1);
