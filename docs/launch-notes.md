@@ -1,6 +1,6 @@
-# Solfeasy local handoff
+# Solfeasy deployment handoff
 
-Project: `D:\上站\solfeasy.com`. Preview: http://127.0.0.1:3000/. Production canonical domain: https://solfeasy.com. No public deployment or domain changes have been made.
+Project: `D:\上站\solfeasy.com`. Preview: http://127.0.0.1:3000/. Production canonical domain: https://solfeasy.com. Worker `solfeasy-com` is deployed with the custom domain route; D1 database `solfeasy-db` is connected.
 
 ## Run
 
