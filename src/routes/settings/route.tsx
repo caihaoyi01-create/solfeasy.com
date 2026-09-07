@@ -1,15 +1,15 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router';
 import {
-  Coins,
   CreditCard,
   Home,
-  Key,
   LayoutDashboard,
   LifeBuoy,
+  Music2,
   Receipt,
   User,
 } from 'lucide-react';
 
+import { tDynamic } from '@/core/i18n/dynamic';
 import { envConfigs } from '@/config';
 import { m } from '@/paraglide/messages.js';
 import { SupportWidget } from '@/blocks/support-widget';
@@ -41,15 +41,9 @@ function SettingsLayout() {
       group,
     },
     {
-      href: '/settings/credits',
-      label: m['settings.nav.credits'](),
-      icon: Coins,
-      group,
-    },
-    {
-      href: '/settings/apikeys',
-      label: m['settings.nav.apikeys'](),
-      icon: Key,
+      href: '/piano-lessons/',
+      label: tDynamic('music.dashboard.pianoLessons'),
+      icon: Music2,
       group,
     },
     {

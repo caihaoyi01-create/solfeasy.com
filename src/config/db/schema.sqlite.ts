@@ -697,3 +697,10 @@ export type InviteCode = typeof inviteCode.$inferSelect;
 export type NewInviteCode = typeof inviteCode.$inferInsert;
 export type UserInvite = typeof userInvite.$inferSelect;
 export type NewUserInvite = typeof userInvite.$inferInsert;
+
+export * from './music-practice-schema';
+export { musicChordDiscovery } from '../../modules/music-chords/schema';
+export {
+  musicTrial,
+  musicLessonProgress,
+} from '../../modules/music-learning/schema';

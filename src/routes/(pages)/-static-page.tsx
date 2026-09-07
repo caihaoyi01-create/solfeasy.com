@@ -47,7 +47,7 @@ export function staticPageRouteOptions(slug: string) {
     head: ({ loaderData }: { loaderData?: LoaderData }) => {
       if (!loaderData) return {};
       const { meta, locale } = loaderData;
-      const canonical = localizeUrl(`${envConfigs.app_url}/${slug}`, {
+      const canonical = localizeUrl(`${envConfigs.site_url}/${slug}`, {
         locale: locale as ReturnType<typeof getLocale>,
       }).href;
       return {

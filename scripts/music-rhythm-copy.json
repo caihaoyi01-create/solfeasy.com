@@ -1,0 +1,30 @@
+{
+  "en": {
+    "sf.rhythm.title": "Find your steady beat",
+    "sf.rhythm.intro": "Start the metronome and clap once per click. Then use Tap on each beat to check your spacing. The higher click marks beat one.",
+    "sf.rhythm.tempo": "Quarter-note tempo",
+    "sf.rhythm.tempoHelp": "40–160 BPM. Stop the metronome to change the tempo.",
+    "sf.rhythm.start": "Start metronome",
+    "sf.rhythm.stop": "Stop metronome",
+    "sf.rhythm.tap": "Tap the beat",
+    "sf.rhythm.reset": "Reset taps",
+    "sf.rhythm.taps": "Taps",
+    "sf.rhythm.consistency": "Estimated consistency",
+    "sf.rhythm.estimate": "After two taps, the estimate compares your last 16 tap intervals with the selected beat length. It measures spacing, not alignment with the click. Browser and device timing can affect the result. Claps are not recorded.",
+    "sf.rhythm.audioError": "Sound could not start. Try the Start button again and check your browser sound settings."
+  },
+  "zh": {
+    "sf.rhythm.title": "找到稳定的拍子",
+    "sf.rhythm.intro": "启动节拍器，每次点击声拍一次手。再用拍击按钮检查间隔是否均匀。较高的点击声表示第一拍。",
+    "sf.rhythm.tempo": "以四分音符为一拍",
+    "sf.rhythm.tempoHelp": "40–160 BPM。先停止节拍器，再调整速度。",
+    "sf.rhythm.start": "启动节拍器",
+    "sf.rhythm.stop": "停止节拍器",
+    "sf.rhythm.tap": "跟着拍子点击",
+    "sf.rhythm.reset": "重置拍击",
+    "sf.rhythm.taps": "拍击次数",
+    "sf.rhythm.consistency": "稳定度估算",
+    "sf.rhythm.estimate": "两次拍击后，将最近 16 个拍击间隔与所选拍长比较。它衡量间隔稳定度，不判断是否对准点击声。浏览器与设备计时可能影响结果。不会录制拍手声。",
+    "sf.rhythm.audioError": "声音未能启动。请再次点击启动按钮，并检查浏览器声音设置。"
+  }
+}

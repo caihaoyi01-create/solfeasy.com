@@ -39,6 +39,7 @@ function SignUpPage() {
   const { data: session, isPending: sessionPending } = useSession();
   // Set right before we navigate so the already-signed-in effect doesn't also fire.
   const navigatingRef = useRef(false);
+  const authBusyRef = useRef(false);
   const [error, setError] = useState('');
 
   const [redirectParam, setRedirectParam] = useState<string | null>(null);
@@ -53,10 +54,17 @@ function SignUpPage() {
   // Already signed in (visited /sign-up directly, or a stale callbackUrl looped
   // back here) → go home. The auth pages never gate themselves, so this can't loop.
   useEffect(() => {
-    if (sessionPending || navigatingRef.current) return;
+    if (sessionPending || navigatingRef.current || authBusyRef.current) return;
     if (session?.user) {
       navigatingRef.current = true;
-      router.push('/');
+      const params = new URLSearchParams(window.location.search);
+      router.push(
+        resolveAfterAuthUrl({
+          redirect: params.get('redirect'),
+          callbackUrl: params.get('callbackUrl'),
+          fallback: '/settings',
+        })
+      );
     }
   }, [sessionPending, session?.user, router]);
 
@@ -158,6 +166,8 @@ function SignUpPage() {
         }
       } catch (err: any) {
         setError(err.message || 'Sign up failed');
+      } finally {
+        authBusyRef.current = false;
       }
     },
   });
@@ -190,6 +200,7 @@ function SignUpPage() {
               </div>
             ) : (
               <form
+                noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
                   form.handleSubmit();

@@ -1,0 +1,9 @@
+# Editorial guides
+
+Owner: editorial agent. Files src/components/solfeasy/editorial.tsx, src/content/solfeasy/\*, scripts/music-editorial-copy.json, src/styles/music-editorial.css. Parent owns routes/metadata/tool hero/global shell and translation merge.
+
+Build distinct useful English 800–1200 word explanatory content for each: home music notes, treble clef notes, bass clef notes, piano chords. No keyword stuffing, invented citations/community statistics/claims of guaranteed ranking. Four tool page keys home, treble, bass, chords. Tutorial how-to-read-music 2500–3000 words with original eight sections (what is sheet music, staff/clefs, alphabet, rhythm, time signatures, rests/dynamics, practice plan, FAQ/next steps). Follow latest TDK, parent implements meta. Musical facts must be accurate; 6/8 compound meter two dotted-quarter pulses and six eighth notes.
+
+Exports ToolEditorial({page:'home'|'treble'|'bass'|'chords'}) and ReadingGuide(). Shared tools are imported from '@/components/music/...' after coordination; tutorial embeds ClefExplorer and rhythm exercise if available. Use styled section layout, sticky contents sidebar where useful, readable prose, compact notation illustrations/tables, internal links to exact /treble-clef-notes/, /bass-clef-notes/, /piano-chords/, /piano-lessons/, /. No top-level H1; parent supplies it. Use existing Link from '@/core/i18n/navigation'. All text must use bilingual message JSON artifact {en:{flat keys},zh:{flat keys}}, no direct edits to messages en/zh to avoid collision. User-facing prose can be bundled per section paragraph strings; do not use raw HTML strings.
+
+DESIGN.md tokens, dark #101214/#1a1c1f, pearl text, coral accents. Agent owns editorial CSS. No ads inside these exports: parent wraps ToolEditorial in explicit ad slots. No paid CTA in prose; only soft next-learning links. Build enough meaningful content rather than repetitive filler. Report word counts.

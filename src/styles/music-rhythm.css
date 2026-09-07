@@ -1,0 +1,149 @@
+.sf-rhythm {
+  background: var(--sf-panel);
+  border: 1px solid var(--sf-line);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.sf-rhythm-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.sf-rhythm .sf-rhythm-heading h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.sf-rhythm-meter {
+  background: var(--sf-raised);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font:
+    14px ui-monospace,
+    monospace;
+}
+.sf-rhythm p {
+  font-size: 14px;
+  margin: 12px 0 20px;
+}
+.sf-rhythm-tempo label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  gap: 12px;
+}
+.sf-rhythm-tempo strong {
+  font-family: ui-monospace, monospace;
+  font-weight: 500;
+}
+.sf-rhythm-tempo input {
+  width: 100%;
+  margin: 14px 0 7px;
+  accent-color: var(--sf-accent);
+  cursor: pointer;
+}
+.sf-rhythm-tempo small {
+  display: block;
+  color: var(--sf-muted);
+  font-size: 11px;
+}
+.sf-rhythm-pulses {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+.sf-rhythm-pulses span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--sf-raised);
+  color: var(--sf-muted);
+  font:
+    16px ui-monospace,
+    monospace;
+  border: 1px solid var(--sf-line);
+}
+.sf-rhythm-pulses span[data-active='true'] {
+  background: var(--sf-accent);
+  color: #201714;
+  border-color: var(--sf-accent);
+}
+.sf-rhythm-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sf-rhythm-actions button {
+  border-radius: 9px;
+  padding: 12px 17px;
+  min-height: 44px;
+  border: 1px solid var(--sf-line);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.sf-rhythm-start {
+  background: var(--sf-paper);
+  color: #222;
+}
+.sf-rhythm-tap {
+  background: var(--sf-accent);
+  color: #241612;
+  min-width: 112px;
+}
+.sf-rhythm-reset {
+  background: transparent;
+  color: var(--sf-muted);
+}
+.sf-rhythm-actions button:disabled,
+.sf-rhythm-tempo input:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.sf-rhythm button:focus-visible,
+.sf-rhythm input:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 4px;
+}
+.sf-rhythm-tap:active:not(:disabled) {
+  background: var(--sf-paper);
+}
+.sf-rhythm-results {
+  display: flex;
+  gap: 40px;
+  margin: 24px 0 12px;
+}
+.sf-rhythm-results dt {
+  font-size: 11px;
+  color: var(--sf-muted);
+  margin-bottom: 5px;
+}
+.sf-rhythm-results dd {
+  margin: 0;
+  font:
+    24px ui-monospace,
+    monospace;
+}
+.sf-rhythm p.sf-rhythm-note {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.sf-rhythm p.sf-rhythm-error {
+  color: var(--sf-accent);
+  margin-bottom: 0;
+}
+@media (max-width: 600px) {
+  .sf-rhythm {
+    padding: 18px;
+  }
+  .sf-rhythm-actions button {
+    flex: 1;
+  }
+  .sf-rhythm-results {
+    gap: 24px;
+  }
+}

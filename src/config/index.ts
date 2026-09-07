@@ -16,8 +16,14 @@ const publicEnv = (key: string) => metaEnv[key] ?? procEnv[key];
 export const envConfigs: Record<string, string> = {
   // App (public)
   app_url: publicEnv('VITE_APP_URL') ?? 'http://localhost:3000',
-  app_name: publicEnv('VITE_APP_NAME') ?? 'ShipAny',
-  app_description: publicEnv('VITE_APP_DESCRIPTION') ?? 'Ship your SaaS faster',
+  site_url: (publicEnv('VITE_SITE_URL') ?? 'https://solfeasy.com').replace(
+    /\/+$/,
+    ''
+  ),
+  app_name: publicEnv('VITE_APP_NAME') ?? 'Solfeasy',
+  app_description:
+    publicEnv('VITE_APP_DESCRIPTION') ??
+    'Learn to read music, one note at a time.',
   app_logo: publicEnv('VITE_APP_LOGO') ?? '/logo.svg',
 
   // Database

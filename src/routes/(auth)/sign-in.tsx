@@ -32,6 +32,7 @@ function SignInPage() {
   const { data: session, isPending: sessionPending } = useSession();
   // Set right before we navigate so the already-signed-in effect doesn't also fire.
   const navigatingRef = useRef(false);
+  const authBusyRef = useRef(false);
   const [error, setError] = useState('');
 
   // callbackUrl: internal page path, goes there directly after login.
@@ -49,10 +50,17 @@ function SignInPage() {
   // Already signed in (visited /sign-in directly, or a stale callbackUrl looped
   // back here) → go home. The auth pages never gate themselves, so this can't loop.
   useEffect(() => {
-    if (sessionPending || navigatingRef.current) return;
+    if (sessionPending || navigatingRef.current || authBusyRef.current) return;
     if (session?.user) {
       navigatingRef.current = true;
-      router.push('/');
+      const params = new URLSearchParams(window.location.search);
+      router.push(
+        resolveAfterAuthUrl({
+          redirect: params.get('redirect'),
+          callbackUrl: params.get('callbackUrl'),
+          fallback: '/settings',
+        })
+      );
     }
   }, [sessionPending, session?.user, router]);
 
@@ -90,6 +98,7 @@ function SignInPage() {
     validators: { onSubmit: signInSchema },
     onSubmit: async ({ value }) => {
       setError('');
+      authBusyRef.current = true;
       try {
         const result: any = await signIn.email({
           email: value.email,
@@ -123,6 +132,8 @@ function SignInPage() {
         }
       } catch (err: any) {
         setError(err.message || 'Sign in failed');
+      } finally {
+        authBusyRef.current = false;
       }
     },
   });
@@ -155,6 +166,7 @@ function SignInPage() {
               </div>
             ) : (
               <form
+                noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
                   form.handleSubmit();

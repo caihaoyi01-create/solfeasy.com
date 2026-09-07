@@ -2,12 +2,16 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { envConfigs } from '@/config';
 import { baseLocale, locales, localizeUrl } from '@/paraglide/runtime.js';
-import { getLocalPosts, mergePosts } from '@/content/posts';
 
 const STATIC_PATHS = [
   '',
-  '/pricing',
-  '/blog',
+  '/bass-clef-notes/',
+  '/treble-clef-notes/',
+  '/piano-chords/',
+  '/how-to-read-music/',
+  '/piano-lessons/',
+  '/pricing/',
+  '/refund-policy',
   '/privacy-policy',
   '/terms-of-service',
 ];
@@ -20,7 +24,7 @@ type Entry = {
 };
 
 function urlFor(path: string, locale: string): string {
-  return localizeUrl(`${envConfigs.app_url}${path || '/'}`, {
+  return localizeUrl(`${envConfigs.site_url}${path || '/'}`, {
     locale: locale as (typeof locales)[number],
   }).href;
 }
@@ -51,42 +55,12 @@ export const Route = createFileRoute('/sitemap.xml')({
       GET: async () => {
         const entries: Entry[] = STATIC_PATHS.map((path) => ({
           path,
-          changeFrequency: path === '/blog' ? 'daily' : 'weekly',
+          changeFrequency: 'weekly',
           priority: path === '' ? 1 : 0.8,
         }));
 
-        // Blog posts: db posts merged with local MDX posts.
-        try {
-          const { listPublishedArticles } =
-            await import('@/modules/posts/service');
-          const rows = await listPublishedArticles().catch(() => []);
-          const dbPosts = rows.map((row) => ({
-            slug: row.slug,
-            title: row.title || row.slug,
-            description: row.description || '',
-            createdAt: new Date(row.createdAt).toISOString(),
-            source: 'db' as const,
-          }));
-          const posts = mergePosts(dbPosts, getLocalPosts(baseLocale));
-          for (const post of posts) {
-            entries.push({
-              path: `/blog/${post.slug}`,
-              lastModified: post.createdAt,
-              changeFrequency: 'monthly',
-              priority: 0.6,
-            });
-          }
-        } catch {
-          // Database unreachable — static paths + local posts still listed.
-          for (const post of getLocalPosts(baseLocale)) {
-            entries.push({
-              path: `/blog/${post.slug}`,
-              lastModified: post.createdAt,
-              changeFrequency: 'monthly',
-              priority: 0.6,
-            });
-          }
-        }
+        // Only reviewed music/legal pages belong in the launch sitemap.
+        // Template demo blog posts remain outside the public discovery surface.
 
         const xml = [
           '<?xml version="1.0" encoding="UTF-8"?>',

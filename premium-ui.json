@@ -1,0 +1,19 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": [
+    "src/components/music",
+    "src/components/solfeasy",
+    "src/blocks/music-pages.tsx",
+    "src/blocks/music-learning.tsx"
+  ],
+  "locale": "en-US",
+  "canonicalMap": "DESIGN.md",
+  "requiredCapabilities": ["Select/Listbox", "Scrollbar", "Toast"],
+  "ownership": { "Select/Listbox": "native" },
+  "requiredCommands": ["unit", "typecheck", "build"],
+  "commands": {
+    "unit": "pnpm exec tsx --test tests/*.test.ts",
+    "typecheck": "pnpm exec tsc --noEmit",
+    "build": "pnpm build"
+  }
+}
